@@ -13,6 +13,8 @@ float skip1X1, skip1Y1, skip1X2, skip1Y2, skip1X3, skip1Y3;
 float skip2X1, skip2Y1, skip2X2, skip2Y2, skip2X3, skip2Y3;
 float rewind1X1, rewind1Y1, rewind1X2, rewind1Y2, rewind1X3, rewind1Y3;
 float rewind2X1, rewind2Y1, rewind2X2, rewind2Y2, rewind2X3, rewind2Y3;
+float LoopX1, LoopY1, LoopWidth, LoopHeight;
+float LoopScaleWidth, LoopScaleHeight;
 //
 //
 void setup() {
@@ -106,12 +108,28 @@ void setup() {
    rewind2Y3 = previousY3;
   //
   // 
+//
+  LoopScaleWidth = 0.2/25.0; //used to change x-size;
+  LoopScaleHeight = 0.2/3.0; //used to change y-axis
+  LoopScaleWidth = 0.2/25.0; //used to chage x-axis
+  LoopScaleHeight = 0.2/3.0; // used to change y-axis
+  //
+  //
+LoopX1 =  rewind2X1 - 180;
+LoopY1 =  rewind2Y1;
+LoopWidth = (pauseButtonDrawX*5/14)*buttonScale;
+LoopHeight = (pauseButtonDrawY*1/2)*buttonScale;
 }//End setup
 //
 void draw() {
  fill(#FFFFFF);
+ 
   rect( pauseX1, pauseY1, pauseWidth, pauseHeight, 72 );
   rect( pauseX2, pauseY2, pauseWidth, pauseHeight, 72);
+  stroke(#000000);
+  strokeWeight(5);
+  rect(  LoopX1, LoopY1, LoopWidth, LoopHeight, 72);
+  noStroke();
  noFill();
  fill(#30D5C8);
   rect(previousrect1X1, previousrect1Y1, previousrect1Width, previousrect1Height);
@@ -125,6 +143,8 @@ void draw() {
   triangle( previousX1, previousY1, previousX2, previousY2, previousX3, previousY3);
  noFill();
  fill(#12A099);
+ stroke(#FFFFFF);
+ strokeWeight(2);
   triangle( skip1X1, skip1Y1, skip1X2, skip1Y2, skip1X3, skip1Y3);
   triangle( skip2X1, skip2Y1, skip2X2, skip2Y2, skip2X3, skip2Y3);
   triangle( rewind1X1, rewind1Y1, rewind1X2, rewind1Y2, rewind1X3, rewind1Y3);
